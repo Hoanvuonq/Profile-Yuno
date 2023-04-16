@@ -1,0 +1,173 @@
+.clock-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+
+    .layout-clock-container {
+        .clock-content {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #c9d5e0;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 30px 30px 30px -10px rgba(0, 0, 0, 0.15),
+                        inset 15px 15px 10px rgba(255, 255, 255, 0.75), 
+                        -15px -15px 30px rgba(255, 255, 255, 0.55),
+                        inset -1px -1px 10px rgba(0, 0, 0, 0.2);
+
+            &::before {
+                content:'';
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: #e91e63;
+                border-radius: 50%;
+                z-index: 1000;
+                box-shadow: 0 0 0 1px #e91e63, 0 0 0 3px #fff, 0 0 5px 5px rgba(0, 0, 0, 0.15)
+            }
+
+            .numbers {
+                position: absolute;
+                inset: 35px;
+                background: #152b4a;
+                border-radius: 50%;
+                box-shadow: 5px 5px 15px #152b4a66, inset 5px 5px 5px rgba(255, 255, 255, 0.55),
+                    -6px -6px 10px rgba(255, 255, 255, 1);
+                                
+                @for $i from 1 through 4 {
+                    $angle: 90deg * ($i - 1);
+                    
+                    .number-clock:nth-child(#{$i}) {
+                    transform: rotate($angle);
+                    
+                    b {
+                        font-weight: 600;
+                        display: inline-block;
+                        transform: rotate(-$angle);
+                    }
+                    }
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset: 35px;
+                    background: linear-gradient(#2193f3, #e91e63);
+                    border-radius: 50%;
+                    animation: animate 2s linear infinite;
+                }
+
+                @keyframes animate {
+                    0% {
+                        transform: rotate(360deg);
+                    }
+
+                    100% {
+                        transform: rotate(0deg);
+                    }
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    inset: 38px;
+                    background: #152b4a;
+                    border-radius: 50%;
+                }
+                
+                .number-clock {
+                    position: absolute;
+                    inset: 5px;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 1.25em;
+                }
+
+                .circle {
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    z-index: 10;
+
+                    i {
+                        position: absolute;
+                        width: 3px;
+                        height: 50%;
+                        background: #fff;
+                        transform-origin: bottom;
+                        transform: scaleY(0.55);
+                    }
+
+                    
+                }
+                #hr i {
+                    transform: scaleY(0.3);
+                    width: 4px;
+                }
+
+                #mm i {
+                    transform: scaleY(0.45);
+                }
+
+                #sc i {
+                    transform: scaleY(0.55);
+                    width: 2px;
+                    background: #e91e63;
+                    box-shadow: 0 30px 0 #e91e63;
+                }
+                }
+                          
+                          
+        }
+    }
+    .clock-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 1s;
+    }
+    
+    .closing {
+        animation: closingClock 1s both;
+    }
+      
+    @keyframes closingClock {
+        0% {
+            transform: translate(0%, 0%) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(12%, -31%) scale(0);
+            opacity: 0.5;
+        }
+    }
+    .btn-close {
+        position: absolute;
+        font-size: 20px;
+        color: white;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.1s ease;
+        z-index: 999;
+        background: #fff;
+        color: #f10808;
+        font-weight: 800;
+        border-radius: 20px;
+        margin-top: -400px;
+        margin-left: 300px;
+    }
+}
+
+
+  
